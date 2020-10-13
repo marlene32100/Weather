@@ -12,6 +12,17 @@ html {
     margin: auto;
 }
 
+.container-info{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(200, 200, 200, 0.3);
+    width: 60%;
+    z-index: 1;
+    border-radius: 2rem;
+}
+
 .title{
     text-transform: uppercase;
     text-align: center;
@@ -20,7 +31,7 @@ html {
     font-size: 2rem;
 }
 
-#location{
+.location{
    
     text-align: center;
     text-transform: uppercase;
@@ -44,16 +55,6 @@ html {
   height: 100%;
 }
 
-.container-info{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(200, 200, 200, 0.3);
-    width: 60%;
-    z-index: 1;
-    border-radius: 2rem;
-}
 
 #today{
     font-size: 2rem;

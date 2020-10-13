@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Weather</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+  </head>
 
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title> Weather
-</title>
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
+  <body>
+    <h1 class="title">Goodmorning App</h1>
+    <div class="container">
+      <img class="weather-image" src="assets/images/default.jpg" />
+      <div class="container-info">
+        <h2 class="location"></h2>
+        <h3 class="temperature"></h3>
+        <p class="description"></p>
+        <p id="today"></p>
+        <p class="notification"></p>
+      </div>
+    </div>
 
-<body>
-<h1 class="title">Goodmorning App</h1>
-<div class="container">
-<img class="weather-image" src="assets/images/default.jpg">
-<div class="container-info">
-<h2 id="location"></h2>
-<h3 class="temperature">15°C</h3>
-<p id="today"></p>
-</div>
-</div>
-
-<script src="js/location.js"></script>
-<script src="js/date.js"></script>
-</body>
-
+    <script src="js/location.js"></script>
+    <script src="js/date.js"></script>
+  </body>
 </html>
