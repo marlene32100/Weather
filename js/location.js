@@ -1,58 +1,36 @@
-window.onload=
+let positionInfo = [];
 
-function(){
+let positionCopy= positionInfo.map((x) => x);
 
-const city = document.querySelector(".location");
-const temp = document.querySelector(".temperature");
-const descr = document.querySelector(".description");
-const image = document.querySelector(".weather-image");
-const notification = document.querySelector(".notification");
-const KELVIN = 273;
-const key = "9fc6f08ac37f5e54bfccd982d3d3a148";
+document.getElementById("location").innerHTML=positionCopy;
 
-// CHECK IF BROWSER SUPPORTS GEOLOCATION
-if('geolocation' in navigator){
-    navigator.geolocation.getCurrentPosition(setPosition, showError);
-}else{
-    notification.style.display = "block";
-    notification.innerHTML = "<p>Browser doesn't Support Geolocation</p>";
-};
+let field = document.getElementById("result").value;
 
-//GET LOCALIZATION
-function setPosition(position){
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-    
-    getWeather(latitude, longitude);
-}
+ 
+// WEATHER API
+//fetch(`api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=9fc6f08ac37f5e54bfccd982d3d3a148`)
+//  .then(response => response.json())
+//  .then(data => console.log(data));
 
-// GET WEATHER FROM API PROVIDER
-function getWeather(latitude, longitude){
-    let api = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
-    
-    fetch(api)
-        .then(function(response){
-            let data = response.json();
-            return data;
-        })
-        .then(function(data){
-            weather.temperature.value = Math.floor(data.main.temp - KELVIN);
-            weather.description = data.weather[0].description;
-            weather.iconId = data.weather[0].icon;
-            weather.city = data.name;
-            weather.country = data.sys.country;
-        })
-        .then(function(){
-            displayWeather();
-        });
-}
+// GEOLOCATION
+function getPosition() {
+  
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                let latitude = position.coords.latitude;
+                let longitude = position.coords.longitude;
+                //CLEAR THE ARRAY BEFORE PASSING THE VALUES
+                positionInfo.length=0;
+                positionInfo.push(latitude);
+                positionInfo.push(longitude);
+                
+                document.getElementById("location").innerHTML=positionInfo;
+            });
+        } else {
+            alert("Sorry, your browser does not support HTML5 geolocation.");
+        }
+  }
+  
 
-// DISPLAY WEATHER TO UI
-function displayWeather(){
-    image.innerHTML = `<img src="images/${weather.iconId}.png"/>`;
-    temp.innerHTML = `${weather.temperature.value}°<span>C</span>`;
-    descr.innerHTML = weather.description;
-    city.innerHTML = `${weather.city}, ${weather.country}`;
-}
 
-};
+
