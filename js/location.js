@@ -1,36 +1,48 @@
-let positionInfo = [];
+const api_key = "3d94c226c24af80636ba80857e13acc9";
+let lat;
+let lon;
 
-let positionCopy= positionInfo.map((x) => x);
+window.addEventListener("load", () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
 
-document.getElementById("location").innerHTML=positionCopy;
+      let today = new Date();
+      let time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-let field = document.getElementById("result").value;
+      let api_weather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${api_key}`;
+      let api_location = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${api_key}`;
 
- 
-// WEATHER API
-//fetch(`api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=9fc6f08ac37f5e54bfccd982d3d3a148`)
-//  .then(response => response.json())
-//  .then(data => console.log(data));
+      fetch(api_weather).then((response) => {
+        return response.json().then((data) => {
+          const temperature = data.current.temp;
+          const celsius = Math.round((temperature - 32 * 5) / 9);
+          const description = data.current.weather[0].main;
+          document.getElementById("celsius").innerHTML = celsius;
+          document.getElementById("description").innerHTML = description;
+        });
+      });
 
-// GEOLOCATION
-function getPosition() {
-  
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                let latitude = position.coords.latitude;
-                let longitude = position.coords.longitude;
-                //CLEAR THE ARRAY BEFORE PASSING THE VALUES
-                positionInfo.length=0;
-                positionInfo.push(latitude);
-                positionInfo.push(longitude);
-                
-                document.getElementById("location").innerHTML=positionInfo;
-            });
-        } else {
-            alert("Sorry, your browser does not support HTML5 geolocation.");
-        }
+      fetch(api_location).then((response) => {
+        return response.json().then((data) => {
+          const location = data[0].name;
+          document.getElementById("location").innerHTML = location;
+        });
+      });
+
+      let time_now = time.split(":")[0];
+
+      if (time_now >= 20 || time_now <= 7) {
+        document.body.style.backgroundImage =
+          "url('./assets/images/starry-night.jpg')";
+      } else {
+        document.body.style.backgroundImage =
+          "url('./assets/images/sunny.jpg')";
+      }
+    });
+  } else {
+    alert("Sorry, your browser does not support HTML5 geolocation.");
   }
-  
-
-
-
+});

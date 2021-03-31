@@ -10,18 +10,21 @@
 
   <body>
     <div class="container">
-      <img class="weather-image" src="assets/images/default.jpg" />
       <div class="container-info">
-      <button onclick="getPosition()">Goodmorning! <br> Ready?</button>
         <h1 id="location"></h1>
-        <h3 class="temperature"></h3>
-        <p class="description"></p>
+        <h3 class="temperature">
+          <span class="temperature" id="celsius"></span>&#176; C
+        </h3>
+        <p class="description">
+          Today the sky is <span id="description"></span>
+        </p>
         <p id="today"></p>
         <p class="notification"></p>
       </div>
     </div>
-
-    <script src="js/location.js"></script>
+    <script type="module" src="js/bundle.js"></script>
+    <script type="module" src="js/location.js"></script>
+    <script src="js/background.js"></script>
     <script src="js/date.js"></script>
   </body>
 </html>
