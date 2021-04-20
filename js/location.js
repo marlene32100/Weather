@@ -42,23 +42,52 @@ window.addEventListener("load", () => {
         document.body.style.backgroundImage =
           "url('./assets/images/starry-night.jpg')";
       } else {
-        document.body.style.backgroundImage =
-          "url('./assets/images/sunny.jpg')";
+        let weather_description = document.getElementById("description");
+        if (
+          weather_description === "few clouds" ||
+          weather_description === "scattered clouds" ||
+          weather_description === "broken clouds"
+        ) {
+          document.body.style.backgroundImage =
+            "url('./assets/images/cloud.jpg')";
+        } else if (weather_description === "thunderstorm") {
+          document.body.style.backgroundImage =
+            "url('./assets/images/thunder.jpg')";
+        } else if (
+          weather_description === "rain" ||
+          weather_description === "shower rain"
+        ) {
+          document.body.style.backgroundImage =
+            "url('./assets/images/rain.jpg')";
+        } else if (weather_description === "snow") {
+          document.body.style.backgroundImage =
+            "url('./assets/images/snow.jpg')";
+        } else if (weather_description === "mist") {
+          document.body.style.backgroundImage =
+            "url('./assets/images/mist.jpg')";
+        } else {
+          document.body.style.backgroundImage =
+            "url('./assets/images/sunny.jpg')";
+        }
       }
 
       function showError(error) {
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            x.innerHTML = "User denied the request for Geolocation.";
+            document.getElementById("display-error").innerHTML =
+              "User denied the request for Geolocation.";
             break;
           case error.POSITION_UNAVAILABLE:
-            x.innerHTML = "Location information is unavailable.";
+            document.getElementById("display-error").innerHTML =
+              "Location information is unavailable.";
             break;
           case error.TIMEOUT:
-            x.innerHTML = "The request to get user location timed out.";
+            document.getElementById("display-error").innerHTML =
+              "The request to get user location timed out.";
             break;
           case error.UNKNOWN_ERROR:
-            x.innerHTML = "An unknown error occurred.";
+            document.getElementById("display-error").innerHTML =
+              "An unknown error occurred.";
             break;
         }
       }
