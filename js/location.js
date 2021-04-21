@@ -38,37 +38,72 @@ window.addEventListener("load", () => {
       // Show different image based on daytime/night time
       let time_now = time.split(":")[0];
 
-      if (time_now >= 20 || time_now <= 7) {
+      if (time_now >= 20 || time_now < 7) {
+        fetch(api_weather).then((response) => {
+          return response.json().then((data) => {
+            const weather_description = data.current.weather[0].description;
+            if (
+              weather_description === "few clouds" ||
+              weather_description === "scattered clouds" ||
+              weather_description === "broken clouds"
+            ) {
+              document.body.style.backgroundImage =
+                "url('./assets/images/cloudy-night.jpg')";
+            } else if (weather_description === "thunderstorm") {
+              document.body.style.backgroundImage =
+                "url('./assets/images/thunder.jpg')";
+            } else if (
+              weather_description === "rain" ||
+              weather_description === "shower rain"
+            ) {
+              document.body.style.backgroundImage =
+                "url('./assets/images/rain.jpg')";
+            } else if (weather_description === "snow") {
+              document.body.style.backgroundImage =
+                "url('./assets/images/snow.jpg')";
+            } else if (weather_description === "mist") {
+              document.body.style.backgroundImage =
+                "url('./assets/images/mist.jpg')";
+            } else {
+              document.body.style.backgroundImage =
+                "url('./assets/images/starry-night.jpg')";
+            }
+          });
+        });
         document.body.style.backgroundImage =
           "url('./assets/images/starry-night.jpg')";
       } else {
-        let weather_description = document.getElementById("description");
-        if (
-          weather_description === "few clouds" ||
-          weather_description === "scattered clouds" ||
-          weather_description === "broken clouds"
-        ) {
-          document.body.style.backgroundImage =
-            "url('./assets/images/cloud.jpg')";
-        } else if (weather_description === "thunderstorm") {
-          document.body.style.backgroundImage =
-            "url('./assets/images/thunder.jpg')";
-        } else if (
-          weather_description === "rain" ||
-          weather_description === "shower rain"
-        ) {
-          document.body.style.backgroundImage =
-            "url('./assets/images/rain.jpg')";
-        } else if (weather_description === "snow") {
-          document.body.style.backgroundImage =
-            "url('./assets/images/snow.jpg')";
-        } else if (weather_description === "mist") {
-          document.body.style.backgroundImage =
-            "url('./assets/images/mist.jpg')";
-        } else {
-          document.body.style.backgroundImage =
-            "url('./assets/images/sunny.jpg')";
-        }
+        fetch(api_weather).then((response) => {
+          return response.json().then((data) => {
+            const weather_description = data.current.weather[0].description;
+            if (
+              weather_description === "few clouds" ||
+              weather_description === "scattered clouds" ||
+              weather_description === "broken clouds"
+            ) {
+              document.body.style.backgroundImage =
+                "url('./assets/images/cloud.jpg')";
+            } else if (weather_description === "thunderstorm") {
+              document.body.style.backgroundImage =
+                "url('./assets/images/thunder.jpg')";
+            } else if (
+              weather_description === "rain" ||
+              weather_description === "shower rain"
+            ) {
+              document.body.style.backgroundImage =
+                "url('./assets/images/rain.jpg')";
+            } else if (weather_description === "snow") {
+              document.body.style.backgroundImage =
+                "url('./assets/images/snow.jpg')";
+            } else if (weather_description === "mist") {
+              document.body.style.backgroundImage =
+                "url('./assets/images/mist.jpg')";
+            } else {
+              document.body.style.backgroundImage =
+                "url('./assets/images/sunny.jpg')";
+            }
+          });
+        });
       }
 
       function showError(error) {
