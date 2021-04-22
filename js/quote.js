@@ -9,7 +9,7 @@ fetch("https://type.fit/api/quotes")
     const randomQuoteAuthor = data[randomNum].author;
     document.getElementById("quote-text").innerHTML =
       '"' + randomQuoteText + '"';
-    if (randomQuoteAuthor === "null") {
+    if (randomQuoteAuthor === null) {
       document.getElementById("quote-author").innerHTML = "-Anonymus-";
     } else {
       document.getElementById("quote-author").innerHTML =
