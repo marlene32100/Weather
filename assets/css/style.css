@@ -85,7 +85,8 @@ body {
 blockquote {
   background-color: rgba(0, 0, 0, 0.3);
   color: white;
-  height: 10rem;
+  height: auto;
+  padding: 1rem;
   font-family: "Raleway", sans-serif;
 }
 

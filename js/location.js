@@ -42,23 +42,16 @@ window.addEventListener("load", () => {
         fetch(api_weather).then((response) => {
           return response.json().then((data) => {
             const weather_description = data.current.weather[0].description;
-            if (
-              weather_description === "few clouds" ||
-              weather_description === "scattered clouds" ||
-              weather_description === "broken clouds"
-            ) {
+            if (weather_description.includes("clouds")) {
               document.body.style.backgroundImage =
                 "url('./assets/images/cloudy-night.jpg')";
             } else if (weather_description === "thunderstorm") {
               document.body.style.backgroundImage =
                 "url('./assets/images/thunder.jpg')";
-            } else if (
-              weather_description === "rain" ||
-              weather_description === "shower rain"
-            ) {
+            } else if (weather_description.includes("rain")) {
               document.body.style.backgroundImage =
                 "url('./assets/images/rain.jpg')";
-            } else if (weather_description === "snow") {
+            } else if (weather_description.includes("snow")) {
               document.body.style.backgroundImage =
                 "url('./assets/images/snow.jpg')";
             } else if (weather_description === "mist") {
@@ -76,25 +69,20 @@ window.addEventListener("load", () => {
         fetch(api_weather).then((response) => {
           return response.json().then((data) => {
             const weather_description = data.current.weather[0].description;
-            if (
-              weather_description === "few clouds" ||
-              weather_description === "scattered clouds" ||
-              weather_description === "broken clouds"
-            ) {
+            if (weather_description.includes("clouds")) {
               document.body.style.backgroundImage =
                 "url('./assets/images/cloud.jpg')";
             } else if (weather_description === "thunderstorm") {
               document.body.style.backgroundImage =
                 "url('./assets/images/thunder.jpg')";
-            } else if (
-              weather_description === "rain" ||
-              weather_description === "shower rain"
-            ) {
+            } else if (weather_description.includes("rain")) {
               document.body.style.backgroundImage =
                 "url('./assets/images/rain.jpg')";
-            } else if (weather_description === "snow") {
+            } else if (weather_description.includes("snow")) {
               document.body.style.backgroundImage =
                 "url('./assets/images/snow.jpg')";
+              document.getElementById("container-info").style.backgroundColor =
+                "rgba(250, 250, 250, 0.8)";
             } else if (weather_description === "mist") {
               document.body.style.backgroundImage =
                 "url('./assets/images/mist.jpg')";
