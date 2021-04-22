@@ -107,5 +107,6 @@ blockquote p {
 @media only screen and (min-width: 360px) {
   .container-info {
     width: 90%;
+    bottom: 20%;
   }
 } ;
